@@ -36,41 +36,46 @@ python -m venv venv
 source venv/bin/activate  # Linux/MacOS
 venv\Scripts\activate     # Windows
 ```
-3. Установите зависимости:
-```bash
-pip install -r requirements.txt
-```
 **Суперпользователь**
   - login: admin
   - password: admin
 
-4.1 Далее либо докер через
-4.1.1 Запускаете контейнер
+3.1 Далее либо докер через
+3.1.1 Запускаете контейнер
 ```bash
 docker-compose up --build
 ```
-4.1.2 Открываете новый терминал, в нём смотрите запущенные контейнеры
+3.1.2 Открываете новый терминал, в нём смотрите запущенные контейнеры
 ```bash
 docker ps
 ```
-4.1.3 Смотрите CONTAINER ID
+3.1.3 Смотрите CONTAINER ID
 ```bash
 docker exec -it <ТУТ CONTAINER ID, НАПРИМЕР: 0b661db20d32> bash
 ```
-4.1.4 Дальше у вас консоль имеет такой вид:
+3.1.4 Дальше у вас консоль имеет такой вид:
 ```console
 root@0b661db20d32:/app/solution_site#
 ```
-4.1.5 Проводите миграции и создаёте суперпользователя, который сможет выписывать цитаты в админ панель:
+3.1.5 Проводите миграции и создаёте суперпользователя, который сможет выписывать цитаты в админ панель:
 ```bash
 python manage.py migrate
 python manage.py createsuperuser
 ```
-4.2 Либо:
+3.2 Либо без докера:
+3.2.1 Установите зависимости:
+```bash
+pip install -r requirements.txt
+```
+3.2.2 Переходите в рабочую директорию
+```bash
+cd solution_site
+```
+3.2.3 Запускаете сервер
 ```bash
 python manage.py runserver
 ```
-5. Откройте в браузере:
+4. Откройте в браузере:
 ```text
 http://localhost:8000/random_quotes
 ```
