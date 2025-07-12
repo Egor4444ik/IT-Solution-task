@@ -41,8 +41,8 @@ venv\Scripts\activate     # Windows
 pip install -r requirements.txt
 ```
 **Суперпользователь**
-login: admin
-password: admin
+  - login: admin
+  - password: admin
 4. Запустите сервер:
 ```bash
 python manage.py runserver
