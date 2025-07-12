@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static 'random_quotes/css/base.css' %}" rel="stylesheet">
+</head>
+<body>
+    <center>
+        <div id="header">
+            <a href="https://it-solution.ru" class="logo-link">
+                <div class="logo-container">
+                    <h1 class="logo-main">IT-Solution</h1>
+                    <h2 class="logo-sub">test task</h2>
+                </div>
+            </a>
+        </div>
+    </center>
+
+    <div class="content-divider"></div>
+
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

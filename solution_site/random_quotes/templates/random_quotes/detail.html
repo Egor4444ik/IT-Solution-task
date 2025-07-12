@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="quote-detail">
+    <h2>Цитата из "{{ quote.source }}"</h2>
+
+    {% if quote.image %}
+    <img src="{{ quote.image.url }}" alt="{{ quote.image.name|truncatechars:30 }}" class="quote-image">
+    {% endif %}
+    
+    <div class="quote-text">{{ quote.text }}</div>
+    
+    <div class="quote-actions">
+        <a href="{% url 'like_quote' quote.id %}" class="like-btn">👍 {{ quote.likes }}</a>
+        <a href="{% url 'dislike_quote' quote.id %}" class="dislike-btn">👎 {{ quote.dislikes }}</a>
+        <span class="views">👀 {{ quote.views_count }}</span>
+    </div>
+    
+    <a href="{% url 'quote_list' %}" class="back-link">← Назад к списку</a>
+</div>
+
+{% endblock %}

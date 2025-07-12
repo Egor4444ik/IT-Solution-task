@@ -1,0 +1,155 @@
+body{
+  font-family: 'Lato', sans-serif;
+}
+
+.wrapper{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.link_wrapper{
+  position: relative;
+}
+
+a{
+  border-radius:20px;
+  display: inline-block;
+  width: 600px;
+  height: 50px;
+  line-height: 52px;
+  font-weight: bold;
+  text-decoration: none;
+  background: #333;
+  text-align: center;
+  /*color: #fff;*/
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 3px solid #ffffff;
+  transition: all .35s;
+  white-space: nowrap
+}
+
+
+a:hover{
+  border-radius:20px;
+  width: 600px;
+  height: 50px;
+  line-height: 52px;
+  border: 3px solid #ffffff;
+  background: transparent;
+  color: #000000;
+  white-space: nowrap
+}
+
+a:hover + .icon{
+  border-radius:20px;
+  border: 3px solid #000000;
+  right: -25%;
+  white-space: nowrap
+}
+
+
+
+.transperent_link{
+  background: transparent;
+  text-decoration: none;
+  border: none;
+}
+.transperent_link:hover{
+  border: none;
+}
+
+
+.header_btn{
+  color: #f3f7cc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+.header_btn:hover{
+  border: 3px solid #333;
+  color: #333;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.icon{
+  width: 50px;
+  height: 50px;
+  border: 3px solid transparent;
+  position: absolute;
+  transform: rotate(45deg);
+  right: 0;
+  top: 0;
+  z-index: -1;
+  transition: all .35s;
+  white-space: nowrap
+}
+
+.icon svg{
+  width: 30px;
+  position: absolute;
+  top: calc(50% - 15px);
+  left: calc(50% - 15px);
+  transform: rotate(-45deg);
+  fill: #ff7272;
+  transition: all .35s;
+  white-space: nowrap
+}
+
+.like-btn, .dislike-btn {
+  padding: 8px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.like-btn {
+  background: #d4edda;
+  color: #155724;
+}
+
+.dislike-btn {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.views {
+  padding: 8px 15px;
+  color: #6c757d;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: #6c757d;
+}
+
+.like-btn, .dislike-btn {
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.like-btn {
+    border-radius: 20px;
+    background: #d4edda;
+    color: #155724;
+}
+
+.dislike-btn {
+    border-radius: 20px;
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.views {
+    padding: 8px 15px;
+    color: #6c757d;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #6c757d;
+}

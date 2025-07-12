@@ -1,0 +1,354 @@
+@import url(//fonts.googleapis.com/css?family=Muli);
+
+body {
+    margin:0;
+    padding:0;
+    font-family: 'Russo One', sans-serif;
+}
+
+p {
+    line-height: 1.8;
+    font-family: 'Russo One', sans-serif;
+    font-size: 20px;
+}
+
+a {
+    color:#7c6eff;
+    text-decoration:none;
+    font-family: 'Russo One', sans-serif;
+}
+
+a:hover {
+    /*color:#00a74f;*/
+    font-family: 'Russo One', sans-serif;
+}
+.white_hover:hover{
+    color:#00a74f;
+}
+
+h1, h2, h3, h4, h5 , h6 { font-family: 'Muli', sans-serif; font-weight:normal; }
+
+h1 {
+    border-bottom:1px solid #bbb;
+    padding:0 0 10px 0;
+    margin:10px 0 20px 0;
+    font-family: 'Russo One', sans-serif;
+    font-size:25px;
+}
+
+h2 {
+    margin:30px 0 20px;
+    font-family: 'Russo One', sans-serif;
+}
+
+ol {
+    line-height:1.5;
+    font-family: 'Russo One', sans-serif;
+}
+
+b {
+    padding-top: 10px;
+}
+
+#header {
+    padding:45px 100px;
+    font-size:14px;
+    background:#12c064;
+    color:#fff;
+    border-bottom:4px solid #1cdf78;
+    overflow:auto;
+    font-family: 'Russo One', sans-serif;
+}
+
+#header .logo {
+    font-family: 'Muli', sans-serif;
+    float:left;
+    color:#f3f7cc;
+    font-size:20px;
+    margin-right:10%;
+    font-family: 'Russo One', sans-serif;
+}
+
+#header ul.menu {
+    list-style:none;
+    float:left;
+    margin:0;
+    padding:0;
+    font-family: 'Russo One', sans-serif;
+}
+#header ul.menu li {
+    display: inline;
+    float:left;
+    padding:4px 10px;
+    font-family: 'Russo One', sans-serif;
+}
+
+#header ul.menu li.selected a, #header ul.menu li.selected a:hover {
+    color:#9385ff;
+    font-weight:bold;
+    font-family: 'Russo One', sans-serif;
+}
+
+#header a {
+    /*color:#f3f7cc;*/
+    font-family: 'Russo One', sans-serif;
+}
+#header a:hover {
+   /* color:#fff;*/
+}
+
+#header .user {
+    float:right;
+    padding-top:4px;
+    font-family: 'Russo One', sans-serif;
+}
+
+#content {
+    padding:30px 100px;
+    font-family: 'Russo One', sans-serif;
+}
+
+/* forms */
+form {
+    overflow:auto;
+    font-family: 'Russo One', sans-serif;
+}
+
+form p {
+    display:block;
+    width:100%;
+    overflow:auto;
+    margin-left:auto;
+    margin-right:auto;
+    font-family: 'Russo One', sans-serif;
+    font-size:20px;
+}
+
+label {
+    float:left;
+    clear:both;
+    color:#333;
+    margin-bottom:4px;
+    font-family: 'Russo One', sans-serif;
+}
+input, textarea {
+    clear:both;
+    float:left;
+    margin:0 0 10px;
+    background:#efefef;
+    border:0;
+    padding:6px 10px;
+    font-size:14px;
+    font-family: 'Russo One', sans-serif;
+}
+input[type=submit], a.button {
+    font-weight:bold;
+    background:#52ffa3;
+    color:#fff;
+    padding:10px 20px;
+    font-size:14px;
+    text-transform:uppercase;
+    font-family: 'Russo One', sans-serif;
+}
+.errorlist {
+    color:#cc0033;
+    float:left;
+    clear:both;
+    padding-left:10px;
+    font-family: 'Russo One', sans-serif;
+}
+.helptext {
+    margin:0 0 20px 0;
+    color:#aaa;
+    clear:both;
+    float:left;
+    font-size:13px;
+    font-family: 'Russo One', sans-serif;
+}
+/* messages */
+ul.messages {
+    margin:10px 100px;
+    padding:0;
+    list-style-type:
+    none;
+    font-family: 'Russo One', sans-serif;
+}
+ul.messages li.success,
+ul.messages li.warning,
+ul.messages li.error,
+ul.messages li.info {
+    margin:0;
+    padding:14px 20px;
+    list-style:none;
+    color:#fff;
+    font-family: 'Russo One', sans-serif;
+}
+
+ul.messages li.success { background:#81ce81; font-family: 'Russo One', sans-serif;}
+ul.messages li.success a { color:#68ff93; font-family: 'Russo One', sans-serif;}
+
+ul.messages li.error { background:#a30029; color:#e9828e; font-family: 'Russo One', sans-serif;}
+ul.messages li.error a { color:#e9828e; font-family: 'Russo One', sans-serif;}
+
+ul.messages li.info { background:#faffae; color:#696b4e; font-family: 'Russo One', sans-serif;}
+ul.messages li.info a { color:#1586de; font-family: 'Russo One', sans-serif;}
+
+ul.messages li.warning { background:#de9404; font-family: 'Russo One', sans-serif;}
+ul.messages li.warning a { color:#f49000; font-family: 'Russo One', sans-serif;}
+
+ul.messages li a.close {
+    margin:0;
+    float:right;
+    opacity:1;
+    border:0;
+    box-shadow:none;
+    text-shadow:none;
+    font-family: 'Russo One', sans-serif;
+}
+
+/* social-auth */
+.social {
+    float:right;
+    font-family: 'Russo One', sans-serif;
+}
+.social li {
+    list-style:none;
+    padding:10px 20px;
+    margin:0 0 10px 0;
+    font-family: 'Russo One', sans-serif;
+}
+.social li a {
+    width:100%;
+    height:100%;
+    display:block;
+    color:#fff;
+    font-family: 'Russo One', sans-serif;
+}
+.social li.facebook { background:#3b5399; font-family: 'Russo One', sans-serif;}
+.social li.twitter { background:#00cffa; font-family: 'Russo One', sans-serif;}
+.social li.google { background:#de1710; font-family: 'Russo One', sans-serif;}
+
+
+/* images */
+
+.image-preview, .image-detail {
+    max-width:300px;
+    float:left;
+    margin:0 20px 20px 0;
+    font-family: 'Russo One', sans-serif;
+}
+.image-detail { margin-top:20px; font-family: 'Russo One', sans-serif;}
+.image-info div {
+    padding:20px 0;
+    overflow:auto;
+    font-family: 'Russo One', sans-serif;
+}
+.count {
+    color:#aaa;
+    border:3px solid #bbb;
+    border-radius:26px;
+    padding:10px 20px;
+    margin:20px 10px 0;
+    font-family: 'Russo One', sans-serif;
+}
+a.like, a.follow { float:right; margin-top:-8px; font-family: 'Russo One', sans-serif;}
+
+#image-list { overflow:hidden; font-family: 'Russo One', sans-serif;}
+#image-list .image {
+    float:left;
+    width:220px;
+    height:300px;
+    margin:0 10px 10px 10px;
+    border-top:8px solid #12c064;
+    background:#eee;
+    font-family: 'Russo One', sans-serif;
+}
+#image-list img { width:220px; height:220px; font-family: 'Russo One', sans-serif;}
+#image-list .info { padding:10px; font-family: 'Russo One', sans-serif;}
+#image-list .info a { color:#333; font-family: 'Russo One', sans-serif;}
+.image-likes div {
+    float:left;
+    width:auto;
+    padding:10px;
+    text-align:center;
+    font-family: 'Russo One', sans-serif;
+}
+.image-likes img {
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    font-family: 'Russo One', sans-serif;
+}
+
+/* users */
+#people-list img {
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    margin-bottom:20px;
+    font-family: 'Russo One', sans-serif;
+}
+#people-list .user {
+    width:180px;
+    float:left;
+    overflow:auto;
+    padding:10px;
+    font-family: 'Russo One', sans-serif;
+}
+#people-list .info { text-align:center; }
+img.user-detail {
+    border-radius:50%;
+    float:left;
+    font-family: 'Russo One', sans-serif;
+}
+.profile-info {
+    float:left;
+    overflow:auto;
+    margin-right:20px;
+    font-family: 'Russo One', sans-serif;
+}
+.image-container { margin-top:40px; }
+
+/* actions */
+.action {
+    clear:both;
+    overflow:auto;
+    font-family: 'Russo One', sans-serif;
+}
+.action .images {
+    float:left;
+    margin:0 10px 10px 0;
+    font-family: 'Russo One', sans-serif;
+}
+.action .date {
+    font-style:italic;
+    color:#ccc;
+    font-family: 'Russo One', sans-serif;
+}
+
+ul li{
+    display: inline;
+    font-family: 'Russo One', sans-serif;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between; /* Space between logo and buttons */
+    align-items: center; /* Vertically align items */
+    font-family: 'Russo One', sans-serif;
+}
+
+.results {
+    background-color: #a08dff;
+    border-left: 6px solid #f082ff;
+    color: #828aff;
+    padding: 30px 50px;
+    font-size: 20px;
+    font-family: 'Russo One', sans-serif;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.graph {
+    margin: auto;
+}

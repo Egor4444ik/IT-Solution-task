@@ -1,0 +1,28 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="quotes-container">
+    {% if quotes %}
+        <a style="width: 240px; margin: 40px; background:#9c51ff; color: #ffffff" class="back-btn" href="{% url 'top'%}" class="stat">Топ 10 цитат *жми*</a>
+        <div class="quotes-list">
+            {% for quote in quotes %}
+            <div class="quote-item">
+                <div class="quote-stats">
+                    <a style="width: 50px; margin: 40px" class="like-btn" href="{% url 'like_quote' quote.id %}" class="stat">👍 {{ quote.likes }}</a>
+                    <a style="width: 50px; margin: 0 40px" class="dislike-btn" href="{% url 'dislike_quote' quote.id %}" class="stat">👎 {{ quote.dislikes }}</a>
+                    <span style="width: 50px; margin: 50px 100px" class="stat">👀 {{ quote.views_count }}</span>
+                </div>
+                <div class="quote-text">
+                    <p href="{% url 'quote_detail' quote.id %}">{{ quote.text }}</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No quotes available.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
