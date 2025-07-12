@@ -17,6 +17,13 @@
 - **Дополнительно**:
   - Pillow для работы с изображениями
   - BeautifulSoup для парсинга изображений
+    
+## Скрины
+![Иллюстрация к проекту](https://github.com/Egor4444ik/IT-Solution-task/tree/main)
+
+![Image alt](https://github.com/Egor4444ik/IT-Solution-task/blob/images/Снимок%20экрана%202025-07-12%20в%2020.53.50.png)
+![Image alt](https://github.com/Egor4444ik/IT-Solution-task/blob/images/Снимок%20экрана%202025-07-12%20в%2020.54.13.png)
+![Image alt](https://github.com/Egor4444ik/IT-Solution-task/blob/images/Снимок%20экрана%202025-07-12%20в%2020.54.36.png)
 
 ## ⚙️ Установка и запуск
 
