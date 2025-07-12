@@ -43,7 +43,30 @@ pip install -r requirements.txt
 **Суперпользователь**
   - login: admin
   - password: admin
-4. Запустите сервер:
+
+4.1 Далее либо докер через
+4.1.1 Запускаете контейнер
+```bash
+docker-compose up --build
+```
+4.1.2 Открываете новый терминал, в нём смотрите запущенные контейнеры
+```bash
+docker ps
+```
+4.1.3 Смотрите CONTAINER ID
+```bash
+docker exec -it <ТУТ CONTAINER ID, НАПРИМЕР: 0b661db20d32> bash
+```
+4.1.4 Дальше у вас консоль имеет такой вид:
+```console
+root@0b661db20d32:/app/solution_site#
+```
+4.1.5 Проводите миграции и создаёте суперпользователя, который сможет выписывать цитаты в админ панель:
+```bash
+python manage.py migrate
+python manage.py createsuperuser
+```
+4.2 Либо:
 ```bash
 python manage.py runserver
 ```
