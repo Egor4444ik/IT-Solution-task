@@ -18,6 +18,7 @@ RUN ls -la && pwd
 
 # Собираем статические файлы
 RUN python manage.py collectstatic --noinput
+RUN python manage.py migrate
 
 # Устанавливаем Gunicorn (если его нет в requirements.txt)
 RUN pip install gunicorn
