@@ -16,13 +16,9 @@ WORKDIR /app/solution_site
 
 RUN ls -la && pwd
 
-# Собираем статические файлы
 RUN python manage.py collectstatic --noinput
 RUN python manage.py migrate
 
-# Устанавливаем Gunicorn (если его нет в requirements.txt)
-RUN pip install gunicorn
-
 EXPOSE 8000
 
-CMD gunicorn solution_site.wsgi:application --bind 0.0.0.0:8000 --workers=3
+CMD ["gunicorn", "solution_site.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
