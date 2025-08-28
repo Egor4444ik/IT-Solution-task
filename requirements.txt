@@ -3,3 +3,4 @@ bs4
 requests
 Pillow
 psycopg2
+gunicorn==21.2.0
