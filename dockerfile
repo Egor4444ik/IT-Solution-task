@@ -19,6 +19,8 @@ RUN find . -name "manage.py"  # Найдет manage.py
 
 WORKDIR /app/solution_site
 
+RUN find /app -name "__init__.py" | head -5
+
 RUN python manage.py collectstatic --noinput
 RUN python manage.py migrate
 

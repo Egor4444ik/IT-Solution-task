@@ -1,15 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Quote
 
-from django.http import JsonResponse
-from django.views import View
-
 import logging
 
-class HealthCheckView(View):
-    def get(self, request):
-        return JsonResponse({"status": "ok"})
-    
 logger = logging.getLogger(__name__)
 
 def top_quote_list(request):
