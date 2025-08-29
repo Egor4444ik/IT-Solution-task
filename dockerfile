@@ -20,9 +20,8 @@ RUN find . -name "manage.py"  # Найдет manage.py
 WORKDIR /app/solution_site
 
 RUN python manage.py collectstatic --noinput
+RUN python manage.py migrate
 
-COPY entrypoint.sh /app/entrypoint.sh
-RUN chmod +x /app/entrypoint.sh
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=5 \
     CMD curl -f http://localhost:8000/health/ || exit 1
