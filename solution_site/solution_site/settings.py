@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-d%wvn&q2geiwi2m2p=efh#9-t!n_yi59ni7xr_6j$noo7vn4yw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['amvera-egor4444ik-run-it-solution-web.app.amvera.io', 'localhost', '127.0.0.1']
 
 
 # Application definition
