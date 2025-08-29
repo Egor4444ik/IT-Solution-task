@@ -34,7 +34,8 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=5 \
 EXPOSE 8000
 
 CMD ["gunicorn", \
-    "solution_site.solution_site.wsgi:application", \
+    "solution_site.wsgi:application", \
+    "--pythonpath", "/app/solution_site", \
     "--bind", "0.0.0.0:8000", \
     "--workers", "3", \
     "--log-level", "debug", \
