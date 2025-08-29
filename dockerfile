@@ -13,17 +13,20 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-WORKDIR /app
-RUN ls -la  # Покажет что в /app
-RUN find . -name "manage.py"  # Найдет manage.py
+RUN echo "=== Структура проекта ===" && \
+    ls -la && \
+    echo "=== Поиск manage.py ===" && \
+    find . -name "manage.py" && \
+    echo "=== Поиск __init__.py ===" && \
+    find . -name "__init__.py" | head -5 && \
+    echo "=== Поиск wsgi.py ===" && \
+    find . -name "wsgi.py"
 
 WORKDIR /app/solution_site
-
-RUN find /app -name "__init__.py" | head -5
-
 RUN python manage.py collectstatic --noinput
 RUN python manage.py migrate
 
+WORKDIR /app
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=5 \
     CMD curl -f http://localhost:8000/health/ || exit 1
