@@ -13,14 +13,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN echo "=== Структура проекта ===" && \
-    ls -la && \
-    echo "=== Поиск manage.py ===" && \
-    find . -name "manage.py" && \
-    echo "=== Поиск __init__.py ===" && \
-    find . -name "__init__.py" | head -5 && \
-    echo "=== Поиск wsgi.py ===" && \
-    find . -name "wsgi.py"
+# ДИАГНОСТИКА СТРУКТУРЫ
+RUN echo "=== FINAL STRUCTURE ===" && \
+    find /app -name "*.py" | grep -E "(wsgi.py|settings.py)" && \
+    echo "=== WSGI FILE ===" && \
+    ls -la /app/solution_site/solution_site/wsgi.py && \
+    echo "=== PYTHONPATH TEST ===" && \
+    PYTHONPATH=/app python -c "import solution_site.solution_site.wsgi; print('SUCCESS: WSGI module found')"
 
 WORKDIR /app/solution_site
 RUN python manage.py collectstatic --noinput
@@ -33,9 +32,10 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=5 \
 
 EXPOSE 8000
 
+# ИСПРАВЛЕННАЯ КОМАНДА GUNICORN
 CMD ["gunicorn", \
-    "solution_site.wsgi:application", \
-    "--pythonpath", "/app/solution_site", \
+    "solution_site.solution_site.wsgi:application", \
+    "--pythonpath", "/app", \
     "--bind", "0.0.0.0:8000", \
     "--workers", "3", \
     "--log-level", "debug", \
