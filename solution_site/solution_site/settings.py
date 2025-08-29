@@ -35,15 +35,19 @@ LOGGING = {
         'console': {
             'class': 'logging.StreamHandler',
         },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'debug.log',  # Укажите желаемый путь к файлу
+        },
     },
     'loggers': {
         'django': {
-            'handlers': ['console'],
+            'handlers': ['console', 'file'],  # Теперь логи идут и в консоль, и в файл
             'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
         },
     },
-}
-        
+}        
 
 # Application definition
 
@@ -89,7 +93,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+#STATIC_ROOT = BASE_DIR / 'static'
+
 STATICFILES_DIRS = [
     BASE_DIR / 'random_quotes/static',
 ]
