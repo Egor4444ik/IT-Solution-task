@@ -18,12 +18,16 @@ WORKDIR /app/solution_site
 RUN ls -la && pwd
 
 RUN python manage.py collectstatic --noinput
-RUN python manage.py migrate
+
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
+ENTRYPOINT ["/app/entrypoint.sh"]
 
 EXPOSE 8000
 
-CMD ["gunicorn", "solution_site.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
-
-# Добавляем скрипт
-COPY wait_and_check.sh /app/wait_and_check.sh
-RUN chmod +x /app/wait_and_check.sh
+CMD ["gunicorn", \
+    "solution_site.wsgi:application", \
+    "--bind", "0.0.0.0:8000", \
+    "--workers", "3", \
+    "--log-level", "debug", "--access-logfile", "-", "--error-logfile", "-"]
