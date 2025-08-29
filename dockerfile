@@ -13,6 +13,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+WORKDIR /app
+RUN ls -la  # Покажет что в /app
+RUN find . -name "manage.py"  # Найдет manage.py
+
 WORKDIR /app/solution_site
 
 RUN python manage.py collectstatic --noinput
