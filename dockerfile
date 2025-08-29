@@ -13,13 +13,15 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# ДИАГНОСТИКА СТРУКТУРЫ
-RUN echo "=== FINAL STRUCTURE ===" && \
-    find /app -name "*.py" | grep -E "(wsgi.py|settings.py)" && \
-    echo "=== WSGI FILE ===" && \
-    ls -la /app/solution_site/solution_site/wsgi.py && \
-    echo "=== PYTHONPATH TEST ===" && \
-    PYTHONPATH=/app python -c "import solution_site.solution_site.wsgi; print('SUCCESS: WSGI module found')"
+# ИСПРАВЛЯЕМ DJANGO_SETTINGS_MODULE В WSGI.PY
+RUN echo "=== Fixing DJANGO_SETTINGS_MODULE ===" && \
+    sed -i "s/'solution_site.settings'/'solution_site.solution_site.settings'/" /app/solution_site/solution_site/wsgi.py && \
+    echo "=== Updated wsgi.py content ===" && \
+    cat /app/solution_site/solution_site/wsgi.py
+
+# ПРОВЕРКА ИСПРАВЛЕНИЯ
+RUN echo "=== Testing WSGI import ===" && \
+    PYTHONPATH=/app python -c "import solution_site.solution_site.wsgi; print('SUCCESS: WSGI module imported successfully')"
 
 WORKDIR /app/solution_site
 RUN python manage.py collectstatic --noinput
@@ -32,10 +34,10 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=5 \
 
 EXPOSE 8000
 
-# ИСПРАВЛЕННАЯ КОМАНДА GUNICORN
 CMD ["gunicorn", \
     "solution_site.solution_site.wsgi:application", \
     "--pythonpath", "/app", \
+    "--env", "DJANGO_SETTINGS_MODULE=solution_site.solution_site.settings", \
     "--bind", "0.0.0.0:8000", \
     "--workers", "3", \
     "--log-level", "debug", \
