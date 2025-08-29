@@ -38,12 +38,12 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'debug.log',  # Укажите желаемый путь к файлу
+            'filename': BASE_DIR / 'debug.log',
         },
     },
     'loggers': {
         'django': {
-            'handlers': ['console', 'file'],  # Теперь логи идут и в консоль, и в файл
+            'handlers': ['console', 'file'],
             'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
         },
     },
@@ -52,7 +52,8 @@ LOGGING = {
 # Application definition
 
 INSTALLED_APPS = [
-    "random_quotes.apps.RandomQuotesConfig",
+    'random_quotes',
+    'random_quotes.apps.RandomQuotesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

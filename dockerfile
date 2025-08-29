@@ -13,15 +13,18 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# ИСПРАВЛЯЕМ DJANGO_SETTINGS_MODULE В WSGI.PY
+# 1. ИСПРАВЛЯЕМ DJANGO_SETTINGS_MODULE В WSGI.PY
 RUN echo "=== Fixing DJANGO_SETTINGS_MODULE ===" && \
-    sed -i "s/'solution_site.settings'/'solution_site.solution_site.settings'/" /app/solution_site/solution_site/wsgi.py && \
-    echo "=== Updated wsgi.py content ===" && \
-    cat /app/solution_site/solution_site/wsgi.py
+    sed -i "s/'solution_site.settings'/'solution_site.solution_site.settings'/" /app/solution_site/solution_site/wsgi.py
 
-# ПРОВЕРКА ИСПРАВЛЕНИЯ
-RUN echo "=== Testing WSGI import ===" && \
-    PYTHONPATH=/app python -c "import solution_site.solution_site.wsgi; print('SUCCESS: WSGI module imported successfully')"
+# 2. ДОБАВЛЯЕМ PYTHONPATH ДЛЯ ПРИЛОЖЕНИЙ
+ENV PYTHONPATH="/app/solution_site:$PYTHONPATH"
+
+# 3. ПРОВЕРКА СТРУКТУРЫ
+RUN echo "=== Project structure ===" && \
+    find /app -name "*.py" | head -10 && \
+    echo "=== Checking for random_quotes ===" && \
+    find /app -name "*random_quotes*" -type d
 
 WORKDIR /app/solution_site
 RUN python manage.py collectstatic --noinput
@@ -34,10 +37,10 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=5 \
 
 EXPOSE 8000
 
+# 4. ИСПРАВЛЕННАЯ КОМАНДА GUNICORN (правильный путь)
 CMD ["gunicorn", \
     "solution_site.solution_site.wsgi:application", \
     "--pythonpath", "/app", \
-    "--env", "DJANGO_SETTINGS_MODULE=solution_site.solution_site.settings", \
     "--bind", "0.0.0.0:8000", \
     "--workers", "3", \
     "--log-level", "debug", \
