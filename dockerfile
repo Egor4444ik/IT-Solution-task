@@ -37,7 +37,7 @@ EXPOSE 8000
 WORKDIR /app/solution_site
 
 CMD ["gunicorn", \
-    "solution_site.wsgi:application", \
+    "solution_site.solution_site.wsgi:application", \
     "--pythonpath", "/app", \
     "--bind", "0.0.0.0:8000", \
     "--workers", "3", \
