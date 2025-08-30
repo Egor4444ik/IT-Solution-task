@@ -13,14 +13,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# 1. ИСПРАВЛЯЕМ DJANGO_SETTINGS_MODULE В WSGI.PY
 RUN echo "=== Fixing DJANGO_SETTINGS_MODULE ===" && \
     sed -i "s/'solution_site.settings'/'solution_site.solution_site.settings'/" /app/solution_site/solution_site/wsgi.py
 
-# 2. ДОБАВЛЯЕМ PYTHONPATH ДЛЯ ПРИЛОЖЕНИЙ
 ENV PYTHONPATH="/app/solution_site:$PYTHONPATH"
 
-# 3. ПРОВЕРКА СТРУКТУРЫ
 RUN echo "=== Project structure ===" && \
     find /app -name "*.py" | head -10 && \
     echo "=== Checking for random_quotes ===" && \
@@ -37,9 +34,10 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=5 \
 
 EXPOSE 8000
 
-# 4. ИСПРАВЛЕННАЯ КОМАНДА GUNICORN (правильный путь)
+WORKDIR /app/solution_site
+
 CMD ["gunicorn", \
-    "solution_site.solution_site.wsgi:application", \
+    "solution_site.wsgi:application", \
     "--pythonpath", "/app", \
     "--bind", "0.0.0.0:8000", \
     "--workers", "3", \
