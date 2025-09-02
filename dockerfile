@@ -17,6 +17,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 WORKDIR /app/solution_site
 
+RUN ls
+
 RUN python manage.py collectstatic --noinput
 RUN python manage.py migrate
 
@@ -27,6 +29,8 @@ EXPOSE 8000
 RUN ls
 
 WORKDIR /app
+
+ENV PYTHONPATH=/app/solution_site:/app
 
 RUN python -c "from solution_site.solution_site.wsgi import application; print('WSGI import successful')"
 CMD ["uwsgi", "--http", "0.0.0.0:8000", "--wsgi-file", "/solution_site/solution_site/wsgi.py", "--callable", "application"]
