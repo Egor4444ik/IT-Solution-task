@@ -43,6 +43,9 @@ except Exception as e: \
     print(f'  ✗ Failed: {e}'); \
 "
 
+RUN find /app -name "*.py" | grep wsgi
+RUN python -c "import solution_site.wsgi; print('WSGI module found')"
+
 WORKDIR /app
 
 EXPOSE 8000
