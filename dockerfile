@@ -37,4 +37,4 @@ WORKDIR /app/solution_site/solution_site
 
 RUN ls
 
-CMD ["uwsgi", "--http", "0.0.0.0:8000", "--module", "wsgi.py:application"]
+CMD ["uwsgi", "--http", "0.0.0.0:8000", "--wsgi-file", "wsgi.py", "--callable", "application"]
