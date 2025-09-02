@@ -14,7 +14,6 @@ COPY requirements.txt .
 COPY solution_site/ ./solution_site/
 
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install uwsgi
 
 WORKDIR /app/solution_site
 
