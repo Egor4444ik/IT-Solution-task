@@ -12,11 +12,16 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+# Устанавливаем правильный Python path
+ENV PYTHONPATH="/app/solution_site:$PYTHONPATH"
+
 WORKDIR /app/solution_site
 
+# Production задачи
 RUN python manage.py collectstatic --noinput
 RUN python manage.py migrate
 
 EXPOSE 8000
 
+# Правильный запуск Gunicorn
 CMD ["gunicorn", "solution_site.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
