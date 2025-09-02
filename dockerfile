@@ -13,6 +13,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+# СОЗДАЕМ __init__.py ВО ВНЕШНЕЙ ПАПКЕ solution_site
+RUN echo "=== Creating missing __init__.py ===" && \
+    touch /app/solution_site/__init__.py && \
+    echo "Created __init__.py in /app/solution_site/"
+
 # ИСПРАВЛЯЕМ DJANGO_SETTINGS_MODULE В WSGI.PY
 RUN sed -i "s/'solution_site.settings'/'solution_site.solution_site.settings'/" /app/solution_site/solution_site/wsgi.py
 
@@ -20,7 +25,7 @@ WORKDIR /app
 
 EXPOSE 8000
 
-# ИСПРАВЛЕННАЯ КОМАНДА GUNICORN
+# КОМАНДА GUNICORN
 CMD ["gunicorn", \
     "solution_site.solution_site.wsgi:application", \
     "--pythonpath", "/app", \
