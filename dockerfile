@@ -20,6 +20,8 @@ WORKDIR /app/solution_site
 RUN python manage.py collectstatic --noinput
 RUN python manage.py migrate
 
+RUN chmod 644 /app/solution_site/solution_site/wsgi.py
+
 EXPOSE 8000
 
 RUN ls
@@ -37,4 +39,4 @@ WORKDIR /app/solution_site/solution_site
 
 RUN ls
 
-CMD ["uwsgi", "--http", "0.0.0.0:8000", "--wsgi-file", "wsgi.py", "--callable", "application"]
+CMD ["uwsgi", "--http", "0.0.0.0:8000", "--wsgi-file", "/app/solution_site/solution_site/wsgi.py", "--callable", "application"]
