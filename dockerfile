@@ -7,11 +7,11 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# Копируем requirements.txt из корня проекта
+# Копируем requirements.txt в /app/
 COPY requirements.txt .
 
-# Копируем ВСЮ папку solution_site
-COPY solution_site/ .
+# Копируем папку solution_site в /app/solution_site/
+COPY solution_site/ ./solution_site/
 
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install uwsgi
@@ -23,5 +23,4 @@ RUN python manage.py migrate
 
 EXPOSE 8000
 
-# Запускаем uWSGI
 CMD ["uwsgi", "--ini", "/app/uwsgi.ini"]
