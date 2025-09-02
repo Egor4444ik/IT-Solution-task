@@ -33,4 +33,5 @@ WORKDIR /app
 ENV PYTHONPATH=/app/solution_site:/app
 
 RUN python -c "from solution_site.solution_site.wsgi import application; print('WSGI import successful')"
-CMD ["uwsgi", "--http", "0.0.0.0:8000", "--wsgi-file", "/solution_site/solution_site/wsgi.py", "--callable", "application"]
+WORKDIR /app/solution_site
+CMD ["uwsgi", "--http", "0.0.0.0:8000", "--module", "solution_site.wsgi:application"]
