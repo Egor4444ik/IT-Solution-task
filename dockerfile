@@ -19,29 +19,29 @@ ENV PYTHONPATH="/app/solution_site/solution_site:$PYTHONPATH"
 # ИСПРАВЛЯЕМ DJANGO_SETTINGS_MODULE (возвращаем оригинальный путь)
 RUN sed -i "s/'solution_site.solution_site.settings'/'solution_site.settings'/" /app/solution_site/solution_site/wsgi.py
 
-# ДИАГНОСТИКА: ПРОВЕРЯЕМ, ЧТО ВСЕ РАБОТАЕТ
+# ДИАГНОСТИКА: ПРОВЕРЯЕМ, ЧТО ВСЕ РАБОТАЕТ (ИСПРАВЛЕННАЯ ВЕРСИЯ)
 RUN echo "=== Testing imports ===" && \
     echo "PYTHONPATH: $PYTHONPATH" && \
     python -c "\
-        import sys; \
-        print('Python paths:'); \
-        [print(f'  {p}') for p in sys.path]; \
-        print(); \
-        print('Testing solution_site import:'); \
-        try: \
-            import solution_site; \
-            print('  ✓ solution_site imported'); \
-            print(f'  Path: {solution_site.__file__}'); \
-        except Exception as e: \
-            print(f'  ✗ Failed: {e}'); \
-        print(); \
-        print('Testing solution_site.wsgi import:'); \
-        try: \
-            import solution_site.wsgi; \
-            print('  ✓ solution_site.wsgi imported'); \
-        except Exception as e: \
-            print(f'  ✗ Failed: {e}'); \
-    "
+import sys; \
+print('Python paths:'); \
+[print(f'  {p}') for p in sys.path]; \
+print(); \
+print('Testing solution_site import:'); \
+try: \
+    import solution_site; \
+    print('  ✓ solution_site imported'); \
+    print(f'  Path: {solution_site.__file__}'); \
+except Exception as e: \
+    print(f'  ✗ Failed: {e}'); \
+print(); \
+print('Testing solution_site.wsgi import:'); \
+try: \
+    import solution_site.wsgi; \
+    print('  ✓ solution_site.wsgi imported'); \
+except Exception as e: \
+    print(f'  ✗ Failed: {e}'); \
+"
 
 WORKDIR /app
 
