@@ -5,18 +5,23 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /app/solution_site
+WORKDIR /app
 
+# Копируем requirements.txt из корня проекта
 COPY requirements.txt .
+
+# Копируем ВСЮ папку solution_site
+COPY solution_site/ .
+
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install uwsgi
 
-COPY . .
-
-ENV PYTHONPATH="/app:$PYTHONPATH"
+WORKDIR /app/solution_site
 
 RUN python manage.py collectstatic --noinput
 RUN python manage.py migrate
 
 EXPOSE 8000
 
-CMD ["gunicorn", "solution_site.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
+# Запускаем uWSGI
+CMD ["uwsgi", "--ini", "/app/uwsgi.ini"]
