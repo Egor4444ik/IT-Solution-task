@@ -24,4 +24,4 @@ EXPOSE 8000
 
 WORKDIR /app
 
-CMD ["uwsgi", "--ini", "/uwsgi.ini"]
+CMD ["uwsgi", "--ini", "uwsgi.ini"]
