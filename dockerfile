@@ -24,4 +24,6 @@ EXPOSE 8000
 
 WORKDIR /app
 
+RUN pwd && ls -la
+
 CMD ["uwsgi", "--http", "0.0.0.0:8000", "--module", "test_wsgi:application"]
