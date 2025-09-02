@@ -14,14 +14,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# УДАЛИТЬ ЭТУ СТРОКУ: RUN sed -i "s/'solution_site.settings'/'solution_site.solution_site.settings'/" /app/solution_site/solution_site/wsgi.py
-
-# ИСПРАВЛЕННЫЕ КОМАНДЫ PYTHONPATH
-RUN echo "=== PYTHONPATH DIAGNOSTICS ==="
-RUN echo "PYTHONPATH: $PYTHONPATH"
+# Correct way to test imports
 RUN echo "=== Testing imports ==="
-RUN PYTHONPATH=/app python -c "import sys; print('Python paths:'); [print(p) for p in sys.path]"
-RUN echo "=== Trying to import wsgi ==="
 RUN PYTHONPATH=/app python -c "try: import solution_site.solution_site.wsgi; print('SUCCESS: solution_site.solution_site.wsgi imported'); except Exception as e: print(f'ERROR: {e}')"
 
 
