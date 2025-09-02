@@ -52,6 +52,7 @@ LOGGING = {
 # Application definition
 
 INSTALLED_APPS = [
+    'random_quotes',
     'random_quotes.apps.RandomQuotesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
