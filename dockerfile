@@ -28,15 +28,12 @@ RUN ls
 
 WORKDIR /app
 
-RUN pwd && ls -la
-RUN ls
+RUN python -c "open('/app/solution_site/solution_site/wsgi.py', 'r').read()"
 
-WORKDIR /app/solution_site
+RUN ls -la /app/solution_site/solution_site/wsgi.py
+RUN file /app/solution_site/solution_site/wsgi.py
+RUN cat /app/solution_site/solution_site/wsgi.pyution_site/solution_site
 
-RUN ls
-
-WORKDIR /app/solution_site/solution_site
-
-RUN ls
+RUN echo 'import os\nfrom django.core.wsgi import get_wsgi_application\n\nos.environ.setdefault("DJANGO_SETTINGS_MODULE", "solution_site.settings")\napplication = get_wsgi_application()' > /app/solution_site/solution_site/wsgi.py
 
 CMD ["uwsgi", "--http", "0.0.0.0:8000", "--wsgi-file", "/app/solution_site/solution_site/wsgi.py", "--callable", "application"]
