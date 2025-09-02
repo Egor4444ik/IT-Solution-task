@@ -24,4 +24,4 @@ EXPOSE 8000
 
 WORKDIR /app
 
-CMD ["uwsgi", "--http", "0.0.0.0:8000", "--module", "solution_site.wsgi:application", "--processes", "4", "--threads", "2"]
+CMD ["uwsgi", "--http", "0.0.0.0:8000", "--module", "solution_site.solution_site.wsgi:application", "--processes", "4", "--threads", "2"]
