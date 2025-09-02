@@ -28,12 +28,5 @@ RUN ls
 
 WORKDIR /app
 
-RUN python -c "open('/app/solution_site/solution_site/wsgi.py', 'r').read()"
-
-RUN ls -la /app/solution_site/solution_site/wsgi.py
-RUN file /app/solution_site/solution_site/wsgi.py
-RUN cat /app/solution_site/solution_site/wsgi.pyution_site/solution_site
-
-RUN echo 'import os\nfrom django.core.wsgi import get_wsgi_application\n\nos.environ.setdefault("DJANGO_SETTINGS_MODULE", "solution_site.settings")\napplication = get_wsgi_application()' > /app/solution_site/solution_site/wsgi.py
-
-CMD ["uwsgi", "--http", "0.0.0.0:8000", "--wsgi-file", "/app/solution_site/solution_site/wsgi.py", "--callable", "application"]
+RUN python -c "from solution_site.solution_site.wsgi import application; print('WSGI import successful')"
+CMD ["uwsgi", "--http", "0.0.0.0:8000", "--wsgi-file", "/solution_site/solution_site/wsgi.py", "--callable", "application"]
