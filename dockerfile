@@ -22,4 +22,6 @@ RUN python manage.py migrate
 
 EXPOSE 8000
 
-CMD ["uwsgi", "--ini", "/app/uwsgi.ini"]
+WORKDIR /app
+
+CMD ["uwsgi", "--ini", "/uwsgi.ini"]
