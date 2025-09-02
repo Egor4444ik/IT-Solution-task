@@ -22,9 +22,15 @@ RUN python manage.py migrate
 
 EXPOSE 8000
 
+RUN ls
+
 WORKDIR /app
 
 RUN pwd && ls -la
+RUN ls
+
+WORKDIR /app/solution_site
+
 RUN ls
 
 CMD ["uwsgi", "--http", "0.0.0.0:8000", "--module", "test_wsgi:application"]
