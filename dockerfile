@@ -33,4 +33,8 @@ WORKDIR /app/solution_site
 
 RUN ls
 
-CMD ["uwsgi", "--http", "0.0.0.0:8000", "--module", "test_wsgi:application"]
+WORKDIR /app/solution_site/solution_site
+
+RUN ls
+
+CMD ["uwsgi", "--http", "0.0.0.0:8000", "--module", "wsgi:application"]
