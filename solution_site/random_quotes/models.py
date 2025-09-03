@@ -7,6 +7,8 @@ logger = logging.getLogger(__name__)
 
 from utils.findImage import parseImage
 
+import uuid
+
 
 class Source(models.Model):
     source_name = models.CharField(blank=False, max_length=500, unique=True)
@@ -39,15 +41,23 @@ class Quote(models.Model):
             if parsed_image:
 
                 print(f"Image upload end")
-                img_name = f"quote_{self.source}.jpg"
+                
+                # Сохраняем оригинальное имя источника в отдельном поле
+                self.image_source_name = self.source  # Добавьте это поле в модель
+                
+                # Генерируем безопасное имя файла
+                unique_id = uuid.uuid4().hex[:8]
+                img_name = f"quote_{unique_id}.jpg"
                 self.image.save(img_name, ContentFile(parsed_image), save=False)
 
                 print(f"Image uploaded successfully!")
                 print(f"Image name: {self.image.name}")
+                print(f"Original source: {self.source}")
                 print(f"Image path: {self.image.path}")
                 print(f"Image URL: {self.image.url}")
                 print(f"File exists: {os.path.exists(self.image.path)}")
                 logger.info(f"Image uploaded: {self.image.name}")
+                logger.info(f"Original source: {self.source}")
                 logger.info(f"Image path: {self.image.path}")
 
                 self.__check_media_files_after_upload()
