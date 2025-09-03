@@ -30,4 +30,6 @@ echo "Checking Django configuration..."
 python manage.py check --deploy --fail-level WARNING
 
 echo "Starting uWSGI server..."
-exec uwsgi --socket :8000 --module solution_site.wsgi:application --master --processes 4 --threads 2
+exec uwsgi --http 0.0.0.0:8000 --module solution_site.wsgi:application --master --processes 4 --threads 2
+
+#exec uwsgi --socket :8000 --module solution_site.wsgi:application --master --processes 4 --threads 2
