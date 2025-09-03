@@ -4,3 +4,4 @@ requests
 Pillow
 psycopg2
 uwsgi
+whitenoise

@@ -6,7 +6,7 @@ echo "Applying database migrations..."
 python manage.py migrate --noinput
 
 echo "Collecting static files..."
-python manage.py collectstatic --noinput
+python manage.py collectstatic --noinput --clear
 
 echo "Checking Django configuration..."
 python manage.py check --deploy --fail-level WARNING
