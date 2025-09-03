@@ -18,7 +18,7 @@ services:
       - DEBUG=False
       - ALLOWED_HOSTS=localhost,127.0.0.1
       - DJANGO_SUPERUSER_USERNAME=admin
-      - [email protected]
+      - DJANGO_SUPERUSER_EMAIL=email@gmail.com
       - DJANGO_SUPERUSER_PASSWORD=securepassword123
     expose:
       - "8000"
