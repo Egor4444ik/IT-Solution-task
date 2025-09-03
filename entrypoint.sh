@@ -1,13 +1,9 @@
 #!/bin/sh
+echo "Installing required packages..."
+apt-get update
+apt-get install -y procps net-tools curl
 
 cd /app/solution_site/
-
-echo "Environment variables:"
-echo "DEBUG: $DEBUG"
-echo "ALLOWED_HOSTS: $ALLOWED_HOSTS"
-echo "SUPERUSER_USERNAME: $DJANGO_SUPERUSER_USERNAME"
-echo "SUPERUSER_EMAIL: $DJANGO_SUPERUSER_EMAIL"
-echo "SUPERUSER_PASSWORD: $DJANGO_SUPERUSER_PASSWORD"
 
 echo "Applying database migrations..."
 python manage.py migrate --noinput

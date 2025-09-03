@@ -5,7 +5,7 @@ services:
       - "80:80"
     volumes:
       - media_volume:/app/solution_site/media
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - web
 
@@ -13,7 +13,6 @@ services:
     build: .
     volumes:
       - media_volume:/app/solution_site/media
-      - sqlite_data:/app/solution_site/db.sqlite3
     environment:
       - DEBUG=False
       - ALLOWED_HOSTS=localhost,127.0.0.1
@@ -22,8 +21,6 @@ services:
       - DJANGO_SUPERUSER_PASSWORD=securepassword123
     expose:
       - "8000"
-    # Убираем command, так как используем ENTRYPOINT
-
+      
 volumes:
   media_volume:
-  sqlite_data:
