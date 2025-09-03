@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   nginx:
     image: nginx:alpine
@@ -27,4 +25,5 @@ services:
     # Убираем command, так как используем ENTRYPOINT
 
 volumes:
+  media_volume:
   sqlite_data:
