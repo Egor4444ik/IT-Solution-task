@@ -118,9 +118,6 @@ DATABASES = {
 
 SILENCED_SYSTEM_CHECKS = ['urls.W002']
 
-# Настройки для статических файлов
-MEDIA_URL = '/media/'
-MEDIA_ROOT = '/app/media/'
 
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
