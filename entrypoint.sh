@@ -5,6 +5,8 @@ cd /app/solution_site/
 echo "Applying database migrations..."
 python manage.py migrate --noinput
 
+python manage.py createsuperuser --noinput --username $DJANGO_SUPERUSER_USERNAME --email $DJANGO_SUPERUSER_EMAIL
+
 echo "Collecting static files..."
 python manage.py collectstatic --noinput --clear
 
