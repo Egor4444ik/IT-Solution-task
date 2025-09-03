@@ -6,6 +6,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 from utils.findImage import parseImage
+import check_media_files_after_upload
 
 
 class Source(models.Model):
@@ -41,6 +42,16 @@ class Quote(models.Model):
                 print(f"Image upload end")
                 img_name = f"quote_{self.source}.jpg"
                 self.image.save(img_name, ContentFile(parsed_image), save=False)
+
+                print(f"Image uploaded successfully!")
+                print(f"Image name: {self.image.name}")
+                print(f"Image path: {self.image.path}")
+                print(f"Image URL: {self.image.url}")
+                print(f"File exists: {os.path.exists(self.image.path)}")
+                logger.info(f"Image uploaded: {self.image.name}")
+                logger.info(f"Image path: {self.image.path}")
+
+                self.check_media_files_after_upload()
 
         except Exception as e:
             logger.info(f"Error: {e}")
