@@ -19,6 +19,7 @@ services:
       - ALLOWED_HOSTS=localhost,127.0.0.1
     expose:
       - "8000"
+    # Убираем command, так как используем ENTRYPOINT
 
 volumes:
   sqlite_data:

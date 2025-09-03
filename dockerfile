@@ -7,20 +7,19 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# Копируем requirements.txt в /app/
 COPY requirements.txt .
 
-# Копируем папку solution_site в /app/solution_site/
 COPY solution_site/ ./solution_site/
 
+COPY entrypoint.sh /app/entrypoint.sh
+
 RUN pip install --no-cache-dir -r requirements.txt
+
+RUN chmod +x /app/entrypoint.sh
 
 WORKDIR /app/solution_site
 
 RUN ls
-
-RUN python manage.py collectstatic --noinput
-RUN python manage.py migrate
 
 RUN chmod 644 /app/solution_site/solution_site/wsgi.py
 
@@ -30,8 +29,4 @@ RUN ls
 
 WORKDIR /app
 
-ENV PYTHONPATH=/app/solution_site:/app
-
-RUN python -c "from solution_site.solution_site.wsgi import application; print('WSGI import successful')"
-WORKDIR /app/solution_site
-CMD ["uwsgi", "--http", "0.0.0.0:8000", "--module", "solution_site.wsgi:application"]
+ENTRYPOINT ["/app/entrypoint.sh"]
