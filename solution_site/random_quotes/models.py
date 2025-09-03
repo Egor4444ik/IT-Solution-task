@@ -6,7 +6,6 @@ import logging
 logger = logging.getLogger(__name__)
 
 from utils.findImage import parseImage
-import check_media_files_after_upload
 
 
 class Source(models.Model):
@@ -51,10 +50,26 @@ class Quote(models.Model):
                 logger.info(f"Image uploaded: {self.image.name}")
                 logger.info(f"Image path: {self.image.path}")
 
-                self.check_media_files_after_upload()
+                self.__check_media_files_after_upload()
 
         except Exception as e:
             logger.info(f"Error: {e}")
+
+    def __check_media_files_after_upload(self):
+        """Проверяет файлы после загрузки (для отладки)"""
+        try:
+            # Проверка локального файла
+            if hasattr(self.image, 'path') and os.path.exists(self.image.path):
+                file_size = os.path.getsize(self.image.path)
+                print(f"✓ Локальный файл существует: {self.image.path} ({file_size} bytes)")
+            else:
+                print(f"✗ Локальный файл не найден: {getattr(self.image, 'path', 'unknown')}")
+                
+            # Вы можете добавить здесь вызов скрипта проверки Docker
+            print("Для проверки в контейнере запустите: docker-compose exec web ls -la /app/solution_site/media/quotes/")
+            
+        except Exception as e:
+            print(f"Ошибка при проверке файлов: {e}")
 
     def clean(self):
         if self.source.quotes.count() >= 3 and not self.pk:
