@@ -1,3 +1,5 @@
+#!/bin/sh
+
 cd /app/solution_site/
 
 echo "Applying database migrations..."
