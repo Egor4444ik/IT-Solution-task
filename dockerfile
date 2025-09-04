@@ -22,6 +22,8 @@ RUN chmod 644 /app/solution_site/solution_site/wsgi.py
 
 RUN chmod -R 755 /app/solution_site/media
 
+RUN mkdir -p /app/solution_site/db
+
 EXPOSE 8000
 
 ENTRYPOINT ["/app/entrypoint.sh"]
