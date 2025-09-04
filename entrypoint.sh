@@ -30,7 +30,7 @@ python manage.py check --deploy --fail-level WARNING
 env | grep -i uwsgi
 
 echo "Starting uWSGI server..."
-exec uwsgi --socket :8000 --module solution_site.wsgi:application --master --processes 4 --threads 2
+exec uwsgi --socket :8001 --http 0.0.0.0:8000 --module solution_site.wsgi:application --master --processes 4 --threads 2 --buffer-size 32768
 
 #exec uwsgi --socket :8000 --module solution_site.wsgi:application --master --processes 4 --threads 2 --buffer-size 32768
 # if [ -f "/app/uwsgi.ini" ]; then
