@@ -5,6 +5,8 @@ apt-get install -y procps net-tools curl
 
 cd /app/solution_site/
 
+echo "DJANGO_SUPERUSER_USERNAME = $DJANGO_SUPERUSER_USERNAME"
+
 echo "Applying database migrations..."
 python manage.py migrate --noinput
 
@@ -29,7 +31,25 @@ python manage.py collectstatic --noinput --clear
 echo "Checking Django configuration..."
 python manage.py check --deploy --fail-level WARNING
 
+env | grep -i uwsgi
+
 echo "Starting uWSGI server..."
 #exec uwsgi --http 0.0.0.0:8000 --module solution_site.wsgi:application --master --processes 4 --threads 2
 #exec uwsgi --socket :8000 --module solution_site.wsgi:application --master --processes 4 --threads 2 --buffer-size 32768
-exec uwsgi --ini uwsgi.ini --buffer-size 32768
+if [ -f "/app/uwsgi.ini" ]; then
+    echo "uwsgi.ini found in /app/, setting permissions..."
+    chmod 644 /app/uwsgi.ini
+    echo "Starting uWSGI with ini configuration from /app/uwsgi.ini..."
+    exec uwsgi --ini /app/uwsgi.ini --buffer-size 32768
+    
+elif [ -f "/app/solution_site/uwsgi.ini" ]; then
+    echo "uwsgi.ini found in /app/solution_site/, setting permissions..."
+    chmod 644 /app/solution_site/uwsgi.ini
+    echo "Starting uWSGI with ini configuration from /app/solution_site/uwsgi.ini..."
+    exec uwsgi --ini /app/solution_site/uwsgi.ini --buffer-size 32768
+    
+else
+    echo "uwsgi.ini not found in any expected location."
+    echo "Starting uWSGI with command line parameters..."
+    exec uwsgi --socket :8000 --module solution_site.wsgi:application --master --processes 4 --threads 2 --buffer-size 32768
+fi
